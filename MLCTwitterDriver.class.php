@@ -6,10 +6,14 @@ abstract class MLCTwitterDriver{
 		return self::CurlData($strUrl);
 	}
 	public static function Search($strParameter){
-		$strUrl = 'http://search.twitter.com/search.json?q=' . urlencode($strParameter);
+		$strUrl = self::CreateSearchUrl($strParameter);
 		
 		return self::CurlData($strUrl);
 	}
+    public static function CreateSearchUrl($strParameter){
+        $strUrl = 'http://search.twitter.com/search.json?q=' . urlencode($strParameter);
+        return $strUrl;
+    }
 	protected static function CurlData($strUrl){
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $strUrl);

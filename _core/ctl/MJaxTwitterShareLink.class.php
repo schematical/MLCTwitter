@@ -13,14 +13,13 @@ class MJaxTwitterShareLink extends MJaxLinkButton{
     protected $strRelated = null;//Related accounts
     protected $blnCount = null;//	Count box position
     protected $strLang = null;//	The language for the Tweet Button
-    protected $blnCount = null;//	URL to which your shared URL resolves
+    protected $strCountUrl = null;//	URL to which your shared URL resolves
     protected $strHashtags = null;//	Comma separated hashtags appended to tweet text
     protected $strSize = null;//	The size of the rendered button
     protected $strDnt = null;//	See this section for information
 
     public function __construct($objParentControl,$strControlId = null) {
         parent::__construct($objParentControl,$strControlId);
-
         $this->objForm->AddJSCall('!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");');
 
     }
@@ -47,7 +46,7 @@ class MJaxTwitterShareLink extends MJaxLinkButton{
             $arrUrlData['lang'] = $this->strLang;
         }
         if(!is_null($this->blnCount)){
-            $arrUrlData['count'] = $this->blnCount;
+            $arrUrlData['counturl'] = $this->strCountUrl;
         }
         if(!is_null($this->strHashtags)){
             $arrUrlData['hashtags'] = $this->strHashtags;
@@ -73,7 +72,7 @@ class MJaxTwitterShareLink extends MJaxLinkButton{
             case "Related": return $this->strRelated;
             case "Count": return $this->blnCount;
             case "Lang": return $this->strLang;
-            case "Count": return $this->blnCount;
+            case "CountUrl": return $this->strCountUrl;
             case "Hashtags": return $this->strHashtags;
             case "Size": return $this->strSize;
             case "Dnt": return $this->strDnt;
@@ -95,7 +94,7 @@ class MJaxTwitterShareLink extends MJaxLinkButton{
             case "Related": return $this->strRelated = $mixValue;
             case "Count": return $this->blnCount = $mixValue;
             case "Lang": return $this->strLang = $mixValue;
-            case "Count": return $this->blnCount = $mixValue;
+            case "CountUrl": return $this->strCountUrl = $mixValue;
             case "Hashtags": return $this->strHashtags = $mixValue;
             case "Size": return $this->strSize = $mixValue;
             case "Dnt": return $this->strDnt = $mixValue;
