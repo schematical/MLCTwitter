@@ -9,7 +9,7 @@
 class MJaxTwitterShareLink extends MJaxLinkButton{
     protected $strUrl = null;//	URL of the page to share
     protected $strVia = null;//	Screen name of the user to attribute the Tweet to
-    protected $strText = null;//	Default Tweet text
+    protected $strShareText = null;//	Default Tweet text
     protected $strRelated = null;//Related accounts
     protected $blnCount = null;//	Count box position
     protected $strLang = null;//	The language for the Tweet Button
@@ -27,14 +27,15 @@ class MJaxTwitterShareLink extends MJaxLinkButton{
     public function UpdateUrl(){
         $strHref = 'https://twitter.com/share?';
         $arrUrlData = array();
+
         if(!is_null($this->strUrl)){
             $arrUrlData['url'] = $this->strUrl;
         }
         if(!is_null($this->strVia)){
             $arrUrlData['via'] = $this->strVia;
         }
-        if(!is_null($this->strText)){
-            $arrUrlData['text'] = $this->strText;
+        if(!is_null($this->strShareText)){
+            $arrUrlData['text'] = $this->strShareText;
         }
         if(!is_null($this->strRelated)){
             $arrUrlData['related'] = $this->strRelated;
@@ -58,6 +59,7 @@ class MJaxTwitterShareLink extends MJaxLinkButton{
             $arrUrlData['dnt'] = $this->strDnt;
         }
         $strHref .= http_build_query($arrUrlData);
+        $this->Href = $strHref;
         $this->Attr('href', $strHref);
     }
     /////////////////////////
@@ -68,7 +70,7 @@ class MJaxTwitterShareLink extends MJaxLinkButton{
         switch ($strName) {
             case "Url": return $this->strUrl;
             case "Via": return $this->strVia;
-            case "Text": return $this->strText;
+            case "ShareText": return $this->strShareText;
             case "Related": return $this->strRelated;
             case "Count": return $this->blnCount;
             case "Lang": return $this->strLang;
@@ -90,7 +92,7 @@ class MJaxTwitterShareLink extends MJaxLinkButton{
         switch ($strName) {
             case "Url": return $this->strUrl = $mixValue;
             case "Via": return $this->strVia = $mixValue;
-            case "Text": return $this->strText = $mixValue;
+            case "ShareText": return $this->strShareText = $mixValue;
             case "Related": return $this->strRelated = $mixValue;
             case "Count": return $this->blnCount = $mixValue;
             case "Lang": return $this->strLang = $mixValue;

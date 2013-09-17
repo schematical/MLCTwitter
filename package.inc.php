@@ -13,4 +13,6 @@ MLCApplicationBase::$arrClassFiles['MJaxTwitterTweetListPanel'] = __MLC_TWITTER_
 
 require_once(__MLC_TWITTER_CORE__ . '/_enum.inc.php');
 //require_once(__MLC_TWITTER_CORE__ . '/_exception.inc.php');
-require_once(__MLC_TWITTER_CORE__ . '/twitteroauth/twitteroauth.php');
+if(!class_exists('OAuthException', true)){
+    require_once(__MLC_TWITTER_CORE__ . '/twitteroauth/twitteroauth.php');
+}
